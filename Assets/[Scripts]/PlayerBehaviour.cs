@@ -10,18 +10,40 @@ public class PlayerBehaviour : MonoBehaviour
     public Boundaries boundaries;
     public float verticalPosition;
 
+    public Camera camera;
+
+    void Start()
+    {
+        camera = Camera.main;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+        //ConventionalInput();
+        MobileInput();
         Move();
+    }
+
+    public void ConventionalInput()
+    {
+        float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+        transform.position += new Vector3(x, verticalPosition, 0.0f);
+    }
+
+    public void MobileInput()
+    {
+        foreach (var touch in Input.touches)
+        {
+            transform.position = camera.ScreenToWorldPoint(touch.position);
+        }
     }
 
     public void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
 
-        transform.position += new Vector3(x, verticalPosition, 0.0f);
+
         float clampedPosition = Mathf.Clamp(transform.position.x, boundaries.min, boundaries.max);
         transform.position = new Vector2(clampedPosition, verticalPosition);
 
