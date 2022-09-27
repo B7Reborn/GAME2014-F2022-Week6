@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
+//using static System.Net.Mime.MediaTypeNames;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -10,20 +11,31 @@ public class PlayerBehaviour : MonoBehaviour
     public Boundaries boundaries;
     public float verticalPosition;
     public float horizontalSpeed = 2.0f;
+    public bool usingMobileInput = false;
 
     private Camera camera;
 
     void Start()
     {
         camera = Camera.main;
+
+        usingMobileInput = Application.platform == RuntimePlatform.Android ||
+                           Application.platform == RuntimePlatform.IPhonePlayer;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        //ConventionalInput();
-        MobileInput();
+        if (usingMobileInput)
+        {
+            MobileInput(); 
+        }
+        else
+        {
+            ConventionalInput();
+        }
+
         Move();
     }
 
