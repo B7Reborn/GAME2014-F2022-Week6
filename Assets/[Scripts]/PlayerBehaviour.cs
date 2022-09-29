@@ -13,6 +13,8 @@ public class PlayerBehaviour : MonoBehaviour
     public float horizontalSpeed = 2.0f;
     public bool usingMobileInput = false;
 
+    public ScoreManager scoreManager;
+
     private Camera camera;
 
     void Start()
@@ -21,6 +23,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         usingMobileInput = Application.platform == RuntimePlatform.Android ||
                            Application.platform == RuntimePlatform.IPhonePlayer;
+
+        scoreManager = FindObjectOfType<ScoreManager>();
     }
 
 
@@ -37,6 +41,11 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         Move();
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            scoreManager.AddPoints(10);
+        }
     }
 
     public void ConventionalInput()
