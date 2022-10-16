@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
-//using static System.Net.Mime.MediaTypeNames;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -15,6 +14,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     public ScoreManager scoreManager;
 
+    [Header("Bullet Properties")] 
+    public Transform bulletSpawnPoint;
+    public GameObject bulletPrefab;
+    public float fireRate = 0.2f;
+    public Transform bulletParent;
+
+
     private Camera camera;
 
     void Start()
@@ -25,6 +31,8 @@ public class PlayerBehaviour : MonoBehaviour
                            Application.platform == RuntimePlatform.IPhonePlayer;
 
         scoreManager = FindObjectOfType<ScoreManager>();
+
+        InvokeRepeating("FireBullets", 0.0f, fireRate);
     }
 
 
@@ -70,5 +78,10 @@ public class PlayerBehaviour : MonoBehaviour
         float clampedPosition = Mathf.Clamp(transform.position.x, boundaries.min, boundaries.max);
         transform.position = new Vector2(clampedPosition, verticalPosition);
 
+    }
+
+    private void FireBullets()
+    {
+        var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity, bulletParent);
     }
 }
