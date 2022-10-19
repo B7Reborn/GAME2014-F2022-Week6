@@ -35,6 +35,7 @@ public class BulletFactory : MonoBehaviour
     public GameObject CreateBullet(BulletType type)
     {
         GameObject bullet = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity, bulletParent);
+        bullet.GetComponent<BulletBehaviour>().bulletType = type;
 
         switch (type)
         {
@@ -49,7 +50,7 @@ public class BulletFactory : MonoBehaviour
                 break;
         }
 
-        bullet.SetActive(true);
+        bullet.SetActive(false);
         return bullet;
     }
 }
