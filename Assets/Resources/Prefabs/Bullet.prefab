@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2887551773756522075}
   - component: {fileID: 2887551773756522074}
   m_Layer: 0
-  m_Name: PlayerBullet
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,8 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  direction: 0
-  velocity: {x: 0, y: 0, z: 0}
+  bulletDirection: 2
   bounds:
     horizontal:
       min: -3
@@ -134,3 +133,5 @@ MonoBehaviour:
     vertical:
       min: -6
       max: 6
+  bulletManager: {fileID: 0}
+  bulletType: 0
