@@ -6,14 +6,14 @@ using UnityEngine;
 public class BulletFactory : MonoBehaviour
 {
     // Bullet Prefab
-    public GameObject bulletPrefab;
+    private GameObject bulletPrefab;
 
     // Sprite Textures
-    public Sprite playerBulletSprite;
-    public Sprite enemyBulletSprite;
+    private Sprite playerBulletSprite;
+    private Sprite enemyBulletSprite;
 
     // Bullet Parent
-    public Transform bulletParent;
+    private Transform bulletParent;
 
 
 

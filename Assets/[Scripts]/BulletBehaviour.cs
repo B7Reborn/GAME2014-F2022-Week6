@@ -17,10 +17,10 @@ public class BulletBehaviour : MonoBehaviour
     public float speed = 0.0f;
     public BulletDirection bulletDirection;
     public ScreenBounds bounds;
-    public BulletManager bulletManager;
     public BulletType bulletType;
 
     private Vector3 velocity;
+    private BulletManager bulletManager;
 
     // Start is called before the first frame update
     void Start()
